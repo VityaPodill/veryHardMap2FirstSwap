@@ -1,0 +1,41 @@
+ public String[] firstSwap(String[] s) {
+               Map< Integer,String> map = new HashMap<>();
+               int len = s.length, cym = 0;
+               String[] pezy = new String[len];
+               String blackList="";
+               for (int i = 0; i < len; i++) {
+
+                   if (map.containsValue(s[i])) {
+                       for (int h=0; h<i; h++) {
+                           if (s[i].equals(s[h])) {
+                               map.put(i, s[i]);
+                               break;
+                           }
+                       } continue;
+                   }
+                   for (int k = 0; k < len; k++) {
+                       if (s[i].charAt(0) == s[k].charAt(0)) {
+                           cym++;
+                           if (cym == 2) {
+                               if (blackList.contains(Character.toString(s[i].charAt(0)))) {
+                                   map.put(i, s[i]);
+                                   cym=0;
+                               }
+                               else {
+                                   blackList += String.valueOf(s[i].charAt(0));
+                                   map.put(i, s[k]);
+                                   map.put(k, s[i]);
+                                   cym = 0;
+                                   break;
+                               }
+                           }
+                       }
+                       if (k==len-1 && cym==1) {
+                           map.put(i, s[i]);
+                           cym=0;
+                       }
+                   }
+               } for (int i=0; i<len; i++) {
+                   pezy[i]=map.get(i);
+               }
+               return pezy;  }

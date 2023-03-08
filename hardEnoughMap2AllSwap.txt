@@ -1,0 +1,35 @@
+public String[] allSwap(String[] s) {
+               Map<Integer,String> map=new HashMap<>();
+               int len=s.length;
+               String[] pezy=new String[len];
+
+               for (int i=0; i<len; i++) {
+                   if (map.containsValue(s[i])) {
+                      if (map.size()==i && i !=len-1) {
+                          for (int k=i+1; k<len; k++) {
+                              if (s[i].charAt(0)==s[k].charAt(0)) {
+                                  map.put(i,s[k]);
+                                  map.put(k,s[i]);
+                                  break;
+                              } else if (k==len-1 && s[i].charAt(0) != s[k].charAt(0))
+                                  map.put(i,s[i]);
+                      }}
+                      else if (map.size()==i && i==len-1)
+                          map.put(i,s[i]);
+                   } else {
+                       if (i==len-1)
+                           map.put(i,s[i]);
+                       else {
+                           for (int k=i+1; k<len; k++) {
+                           if (s[i].charAt(0)==s[k].charAt(0)) {
+                               map.put(i,s[k]);
+                               map.put(k,s[i]);
+                               break;
+                           } else if (k==len-1 && s[i].charAt(0) != s[k].charAt(0))
+                               map.put(i,s[i]);
+                       }}
+                   }
+               } for (int i=0; i<len; i++) {
+                   pezy[i]=map.get(i);
+               }return pezy;
+           }

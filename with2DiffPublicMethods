@@ -1,0 +1,11 @@
+public int scoresAverage(int []s) {
+              int left=average(s,0,s.length/2-1);
+              int right=average(s,s.length/2,s.length-1);
+              return Math.max(left,right);
+          }
+          public int average(int []s,int start,int end) {
+              int cym=0;
+              for (int i=start; i<=end; i++) {
+                  cym+=s[i];
+              }return cym/(end-start+1);
+          }
